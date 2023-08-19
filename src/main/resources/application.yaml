@@ -1,5 +1,21 @@
-spring:
+server:
+  tomcat:
+    protocol-header: x-forwarded-proto
+    uri-encoding: UTF-8
+  port: 10005
 
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
   h2:
     console:
       enabled: true
@@ -29,10 +45,3 @@ spring:
         #use_sql_comments: true          # 보다 쉬운 디버깅을 위해 SQL 내부에 /* */의 주석을 추가합니다.
         jdbc.loc_non_contextual_creation: true
 
-# Logging
-logging:
-  level:                                        # 각 package 별로 로깅 레벨을 지정할 수 있다.
-    #org.hibernate.type: trace                   # 콘솔차에 조건에 바인딩되는 값 및 조회 결과 출력
-    org.hibernate.SQL: debug                    # logger를 통해 하이버네이트 실행 SQL
-    org.hibernate.type.descriptor.sql: trace    # sql의 ? 값을 Parameter로 보여줌.
-    org.hibernate.orm.jdbc.bind: trace
